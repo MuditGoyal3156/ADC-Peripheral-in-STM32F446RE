@@ -5,7 +5,7 @@ A comprehensive, register-level C program for the Analog-to-Digital Converter (A
 ## 🚀 Key Features
 **Bare-Metal Implementation:** Direct manipulation of RCC, ADC, and GPIO registers for maximum efficiency.
 
-**Multiple Operating Modes:**
+### **Multiple Operating Modes:**
 
 **Single Conversion:** Standard polling-based conversion.
 
@@ -17,11 +17,11 @@ A comprehensive, register-level C program for the Analog-to-Digital Converter (A
 
 **Hardware Safety:** Implementation of the Analog Watchdog with higher and lower thresholds  to trigger interrupts.
 
-**System Monitoring:**
+### **System Monitoring:**
 
-Internal Temperature Sensor: Includes formula-based calculation ($V_{SENSE}$ to $°C$).
+**Internal Temperature Sensor:** Includes formula-based calculation ($V_{SENSE}$ to $°C$).
 
-$V_{BAT}$ Monitoring: Internal bridge monitoring for backup battery voltage.
+**$V_{BAT}$ Monitoring:** Internal bridge monitoring for backup battery voltage.
 
 **Interrupt Driven:** Full configuration for NVIC and ADC interrupts (EOCIE, OVRIE).
 
