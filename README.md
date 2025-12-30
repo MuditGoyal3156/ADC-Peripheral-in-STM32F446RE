@@ -41,14 +41,14 @@ $V_{BAT}$ Monitoring: Internal bridge monitoring for backup battery voltage.
 
 ## 📝 Temperature Calculation Logic
 
-The temperature is calculated using the internal $V_{25}$ reference:
+The temperature is calculated from the sensor voltage using the following equation:
 
-$$Temperature (°C) = \frac{(V_{SENSE} - 0.76V)}{0.0025} + 25$$As 
+\[
+\text{Temperature (°C)} = \frac{V_{\text{SENSE}} - 0.76}{0.0025} + 25
+\]
 
-implemented in Temp_int.c:
-
-Cfloat VSENSE = (data * VREF) / 4095.0f;
-return (float)((VSENSE - V25) / AVG_SLOPE) + 25.0f;
+where:
+- \( V_{\text{SENSE}} \) is the sensed voltage in volts.
 
 ## 🛠 How to Run
 
