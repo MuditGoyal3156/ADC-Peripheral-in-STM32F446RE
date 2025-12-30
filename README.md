@@ -43,12 +43,17 @@ $V_{BAT}$ Monitoring: Internal bridge monitoring for backup battery voltage.
 
 The temperature is calculated from the sensor voltage using the following equation:
 
-\[
-\text{Temperature (°C)} = \frac{V_{\text{SENSE}} - 0.76}{0.0025} + 25
-\]
+Temperature (°C) = (V_SENSE − 0.76) / 0.0025 + 25
 
 where:
-- \( V_{\text{SENSE}} \) is the sensed voltage in volts.
+
+**V_SENSE** : (data * VREF) / 4095
+
+**data** is the ADC value
+
+**0.76 V** corresponds to V25 (voltage at 25 °C)  
+
+**0.0025 V/°C** is the average slope of the temperature sensor 
 
 ## 🛠 How to Run
 
