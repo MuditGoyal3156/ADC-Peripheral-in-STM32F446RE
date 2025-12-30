@@ -21,9 +21,12 @@
 
 #include <stdio.h>
 #include "UART.h"
-#include "ADC_WatchDog.h"
+#include "Temp_int.h"
 
-uint16_t Data = 0;
+#define SCB_CPACR   (*(volatile uint32_t*)0xE000ED88U)
+
+uint16_t Data1=0;
+float Temp=0;
 
 void delay(void)
 {
@@ -31,22 +34,26 @@ void delay(void)
 }
 int main(void)
 {
+	SCB_CPACR |= (3UL << 20) | (3UL << 22);
+
 	uart2_tx_init();
-	LED_Init();
 	ADC_Init();
 	ADC_Interruptconfig();
-    ADC_Watchdog();
 	ADC_Start();
 
 	while(1)
 	{
-
-		printf("ADC Values : %d\r\n",Data);
 		delay();
+		int32_t t = Compute_temp_x100(Data1);
+
+		printf("ADC value: %d | Temperature: %ld.%02ld C\r\n",Data1, t/100, abs(t%100));
+
+
 	}
 }
 
 void ADC_IRQHandler(void)
 {
-	ADC_IRQ_Handler(&Data);
+	ADC_IRQ_Handler(&Data1);
+
 }
